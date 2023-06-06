@@ -11,6 +11,7 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.motion.widget.MotionScene
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
@@ -53,15 +54,13 @@ class MainActivity : AppCompatActivity() {
             this.recreate()
         }
 
-
+        textView.visibility = TextView.INVISIBLE
 
         showButton.setOnClickListener {
             motionLayout.transitionToEnd()
-            if (motionLayout.progress == 1.0f) {
-                showButton.text = "Show"
-            } else {
-                showButton.text = "Hide"
-            }
+            showButton.text = if (textView.isVisible) "Hide"
+            else "Show"
+            textView.isVisible = !textView.isVisible
         }
 
         //date picker
