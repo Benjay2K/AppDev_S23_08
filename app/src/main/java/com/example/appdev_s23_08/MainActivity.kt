@@ -49,12 +49,9 @@ class MainActivity : AppCompatActivity() {
         // Set button click listener that should change style of "Hello there" textView
         styleButton.setOnClickListener {
             // Toggle between styles
-            Log.i("MainActivity", "Style button clicked")
             isStyle1Applied = !isStyle1Applied
             this.recreate()
         }
-
-        textView.visibility = TextView.INVISIBLE
 
         showButton.setOnClickListener {
             motionLayout.transitionToEnd()
