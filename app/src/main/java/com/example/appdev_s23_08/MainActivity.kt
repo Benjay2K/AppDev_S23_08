@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         showButton.setOnClickListener {
             motionLayout.transitionToEnd()
             textView.isVisible = !textView.isVisible
-            showButton.setText(if (textView.isVisible) R.string.hideButtonText else R.string.showButtonText)
+//            showButton.setText(if (textView.isVisible) R.string.hideButtonText else R.string.showButtonText)
         }
 
         //date picker
