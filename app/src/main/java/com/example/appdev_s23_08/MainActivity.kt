@@ -28,7 +28,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-/*        styleButton = findViewById(R.id.styleButton)
+        styleButton = findViewById(R.id.styleButton)
+        motionLayout = findViewById(R.id.activity_main)
+        textView = findViewById(R.id.textView)
+        showButton = findViewById(R.id.showButton)
 
         // Set initial style
         setStyle1()
@@ -39,19 +42,16 @@ class MainActivity : AppCompatActivity() {
         // Set button click listener that should change style of "Hello there" textView
         styleButton.setOnClickListener {
             // Toggle between styles
-            if (isStyle1Applied) {
+            isStyle1Applied = if (isStyle1Applied) {
                 setStyle2()
-                isStyle1Applied = false
+                false
             } else {
                 setStyle1()
-                isStyle1Applied = true
+                true
             }
-        }*/
+        }
 
-        // motion of showButton
-        motionLayout = findViewById(R.id.activity_main)
-        textView = findViewById(R.id.textView)
-        showButton = findViewById(R.id.showButton)
+
 
         showButton.setOnClickListener {
             motionLayout.transitionToEnd()
@@ -101,10 +101,10 @@ class MainActivity : AppCompatActivity() {
 
     // functions for changing styles
     private fun setStyle1() {
-        textView.setTextAppearance(this, R.style.AppStyle1)
+        textView.setTextAppearance(R.style.AppStyle1)
     }
 
     private fun setStyle2() {
-        textView.setTextAppearance(this, R.style.AppStyle2)
+        textView.setTextAppearance(R.style.AppStyle2)
     }
 }
