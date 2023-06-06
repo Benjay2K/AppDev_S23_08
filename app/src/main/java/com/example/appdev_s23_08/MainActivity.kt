@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.motion.widget.MotionLayout
@@ -14,8 +15,11 @@ import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        private var isStyle1Applied = true
+    }
+
     private lateinit var styleButton: Button
-    private var isStyle1Applied = true
 
     private lateinit var motionLayout: MotionLayout
     private lateinit var textView: TextView
@@ -26,6 +30,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Set theme
+        if (isStyle1Applied) setTheme(R.style.AppTheme1)
+        else setTheme(R.style.AppTheme2)
+
         setContentView(R.layout.activity_main)
 
         styleButton = findViewById(R.id.styleButton)
@@ -33,22 +41,16 @@ class MainActivity : AppCompatActivity() {
         textView = findViewById(R.id.textView)
         showButton = findViewById(R.id.showButton)
 
-        // Set initial style
-        setStyle1()
-
-        // Set initial theme
-        setTheme(R.style.AppTheme1)
+//        Set style
+        if (isStyle1Applied) textView.setTextAppearance(R.style.AppStyle1)
+        else textView.setTextAppearance(R.style.AppStyle2)
 
         // Set button click listener that should change style of "Hello there" textView
         styleButton.setOnClickListener {
             // Toggle between styles
-            isStyle1Applied = if (isStyle1Applied) {
-                setStyle2()
-                false
-            } else {
-                setStyle1()
-                true
-            }
+            Log.i("MainActivity", "Style button clicked")
+            isStyle1Applied = !isStyle1Applied
+            this.recreate()
         }
 
 
@@ -97,14 +99,5 @@ class MainActivity : AppCompatActivity() {
         timePickerButton.setOnClickListener {
             timePickerDialog.show()
         }
-    }
-
-    // functions for changing styles
-    private fun setStyle1() {
-        textView.setTextAppearance(R.style.AppStyle1)
-    }
-
-    private fun setStyle2() {
-        textView.setTextAppearance(R.style.AppStyle2)
     }
 }
